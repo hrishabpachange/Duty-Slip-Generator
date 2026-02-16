@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duty Slip #{{ slip_id }}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f9fc;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .slip-container {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .slip-header {
+            text-align: center;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .slip-header h1 {
+            margin: 0;
+            color: #333;
+            font-size: 2rem;
+        }
+
+        .slip-header p {
+            color: #666;
+            margin: 0.5rem 0 0;
+        }
+
+        .slip-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .detail-row {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .label {
+            font-weight: 600;
+            color: #555;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .value {
+            font-size: 1.1rem;
+            color: #222;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        .actions {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0 0.5rem;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .slip-container {
+                box-shadow: none;
+                border: none;
+                width: 100%;
+                max-width: 100%;
+                padding: 0;
+            }
+
+            .actions {
+                display: none;
+            }
+
+            .slip-header {
+                border-bottom: 2px solid #000;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slip-container">
+        <header class="slip-header">
+            <h1>Duty Slip</h1>
+            <p>Slip ID: #{{ slip_id }} • Date: {{ data.Date }}</p>
+        </header>
+
+        <div class="slip-details">
+            <div class="detail-row full-width">
+                <span class="label">Booked By</span>
+                <span class="value">{{ data['Booked By'] }}</span>
+            </div>
+
+            <div class="detail-row full-width">
+                <span class="label">User Names</span>
+                <span class="value">{{ data['User Names'] }}</span>
+            </div>
+
+            <div class="detail-row">
+                <span class="label">Cab Number</span>
+                <span class="value">{{ data['Cab Number'] }}</span>
+            </div>
+
+            <div class="detail-row">
+                <span class="label">Chauffeur Name</span>
+                <span class="value">{{ data['Chauffeur Name'] }}</span>
+            </div>
+
+            <div class="detail-row full-width">
+                <span class="label">Trip Details</span>
+                <span class="value">{{ data['Trip'] }}</span>
+            </div>
+
+            <div class="detail-row">
+                <span class="label">Reporting Time</span>
+                <span class="value">{{ data['Reporting Time'] }}</span>
+            </div>
+
+            <div class="detail-row">
+                <span class="label">Closing Time</span>
+                <span class="value">{{ data['Closing Time'] }}</span>
+            </div>
+
+            <div class="detail-row">
+                <span class="label">Starting Kms</span>
+                <span class="value">{{ data['Starting Kms'] }} km</span>
+            </div>
+
+            <div class="detail-row">
+                <span class="label">Closing Kms</span>
+                <span class="value">{{ data['Closing Kms'] }} km</span>
+            </div>
+
+            <div class="detail-row full-width">
+                <span class="label">Total Kilometers</span>
+                <span class="value">{{ (data['Closing Kms']|int) - (data['Starting Kms']|int) }} km</span>
+            </div>
+
+            <div class="detail-row full-width">
+                <span class="label">Total Hours Billed</span>
+                <span class="value">{{ data['Total Hours'] }} hrs</span>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button onclick="window.print()" class="btn">Print Duty Slip</button>
+            <a href="/" class="btn btn-secondary">Create Another Slip</a>
+        </div>
+    </div>
+</body>
+
+</html>

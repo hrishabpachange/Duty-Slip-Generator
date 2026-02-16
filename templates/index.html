@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duty Slip Generator</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Duty Slip Generator</h1>
+            <p>Generate precise, professional duty slips in seconds.</p>
+        </header>
+
+        <form action="/submit" method="post" class="duty-form">
+            <div class="form-grid">
+                <!-- Row 1: Users & Booker -->
+                <div class="form-group full-width">
+                    <label for="booked_by">Booked By (Client/Requester)</label>
+                    <input type="text" id="booked_by" name="booked_by" placeholder="e.g. John Doe, Admin" required>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="user_names">User Names (Separate by comma)</label>
+                    <input type="text" id="user_names" name="user_names" placeholder="e.g. Alice Smith, Bob Jones"
+                        required>
+                </div>
+
+                <!-- Row 2: Vehicle & Driver -->
+                <div class="form-group">
+                    <label for="cab_number">Cab Number</label>
+                    <input type="text" id="cab_number" name="cab_number" placeholder="DL-XXX-XXXX" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="chauffeur_name">Chauffeur's Name</label>
+                    <input type="text" id="chauffeur_name" name="chauffeur_name" placeholder="Driver Name" required>
+                </div>
+
+                <!-- Row 3: Trip Details -->
+                <div class="form-group full-width">
+                    <label for="trip">Trip Details</label>
+                    <input type="text" id="trip" name="trip" placeholder="From [Origin] to [Destination]" required>
+                </div>
+
+                <!-- Row 4: Reporting/Closing Time -->
+                <div class="form-group">
+                    <label for="reporting_time">Reporting Time</label>
+                    <input type="time" id="reporting_time" name="reporting_time" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="closing_time">Closing Time</label>
+                    <input type="time" id="closing_time" name="closing_time" required>
+                </div>
+
+                <!-- Row 5: Kms -->
+                <div class="form-group">
+                    <label for="starting_kms">Starting Kms</label>
+                    <input type="number" id="starting_kms" name="starting_kms" placeholder="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="closing_kms">Closing Kms</label>
+                    <input type="number" id="closing_kms" name="closing_kms" placeholder="0" required>
+                </div>
+
+                <!-- Row 6: Hours -->
+                <div class="form-group full-width total-hours-group">
+                    <label for="total_hours">Total Hours Used</label>
+                    <input type="number" step="0.5" id="total_hours" name="total_hours"
+                        placeholder="Total duration (hrs)" required>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Generate Duty Slip</button>
+            </div>
+
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="/download"
+                    style="color: var(--primary-color); text-decoration: none; font-size: 0.9rem;">Download Excel
+                    Records</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
